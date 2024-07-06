@@ -7,9 +7,18 @@ services:
       POSTGRES_PASSWORD: admin
       PGDATA: /data/postgres
     volumes:
-      - /Users/drtech/postgres/data:/data/postgres
+      - postgres/data:/data/postgres
     ports:
       - "5432:5432"
+    networks:
+      - postgres
+    restart: unless-stopped
+
+  stock-management:
+    container_name: stock-management
+    image: stock-management:v2
+    ports:
+      - "8080:8080"
     networks:
       - postgres
     restart: unless-stopped
