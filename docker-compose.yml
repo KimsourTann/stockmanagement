@@ -16,7 +16,7 @@ services:
 
   stock-management:
     container_name: stock-management
-    image: stock-management:v2
+    image: kimsourtann/stock-management:v2
     ports:
       - "8080:8080"
     networks:
