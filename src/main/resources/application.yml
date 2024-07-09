@@ -1,12 +1,14 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres-sql:5432/authentication
+    url: jdbc:postgresql://localhost:5432/authentication
+    # url: jdbc:postgresql://postgres-sql:5432/authentication
     username: admin
     password: admin
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
+      # ddl-auto: create-drop
     show-sql: false
     properties:
       hibernate:

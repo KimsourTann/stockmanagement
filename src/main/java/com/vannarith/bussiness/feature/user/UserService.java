@@ -5,6 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.vannarith.bussiness.app.exception.AppException;
 import com.vannarith.bussiness.feature.token.TokenRepository;
 
 import java.security.Principal;
@@ -23,11 +24,13 @@ public class UserService {
 
         // check if the current password is correct
         if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
-            throw new IllegalStateException("Wrong password");
+            // throw new IllegalStateException("Wrong password");
+            throw new AppException("003","Wrong password");
         }
         // check if the two new passwords are the same
         if (!request.getNewPassword().equals(request.getConfirmationPassword())) {
-            throw new IllegalStateException("Password are not the same");
+            // throw new IllegalStateException("Password are not the same");
+            throw new AppException("004","Password are not the same");
         }
 
         // update the password
@@ -41,7 +44,8 @@ public class UserService {
 
         Optional<User> opUser = repository.findByEmail(request.getEmail());
         if(!opUser.isPresent()){
-            throw new IllegalStateException("User not Found");
+            throw new AppException("002","User not Found");
+            // throw new IllegalStateException("User not Found");
         }
         
         // update the password

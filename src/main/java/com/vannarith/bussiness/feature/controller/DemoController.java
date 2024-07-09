@@ -35,10 +35,10 @@ public class DemoController {
 
 
 
-  // @PostMapping("/filter")
-  // public List<User> filter(@RequestBody SearchRequest request) {
-  //   Specification <User> user = searchFilter.getSearchSpecification(request);
-  //   return repository.findAll(user);
-  // }
+  @PostMapping("/filter")
+  public List<User> filter(@RequestBody SearchRequest request) {
+    Specification <User> user = searchFilter.getSearchSpecification(request);
+    return repository.findAll(user);
+  }
 
 }
