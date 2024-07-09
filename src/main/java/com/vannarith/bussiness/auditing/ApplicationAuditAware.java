@@ -5,7 +5,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.vannarith.bussiness.user.User;
+import com.vannarith.bussiness.feature.user.User;
 
 import java.util.Optional;
 
