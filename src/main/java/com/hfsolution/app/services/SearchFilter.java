@@ -6,10 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
 import com.hfsolution.app.dto.SearchRequest;
 import com.hfsolution.app.enums.GlobalOperator;
-
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;

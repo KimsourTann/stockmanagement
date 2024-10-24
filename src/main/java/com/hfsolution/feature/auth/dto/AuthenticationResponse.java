@@ -1,6 +1,6 @@
 package com.hfsolution.feature.auth.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+// import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,8 +14,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AuthenticationResponse {
 
-  @JsonProperty("access_token")
+  // @JsonProperty("access_token")
   private String accessToken;
-  @JsonProperty("refresh_token")
+  // @JsonProperty("refresh_token")
   private String refreshToken;
 }

@@ -4,9 +4,7 @@ package com.hfsolution.feature.user.controller;
 import lombok.RequiredArgsConstructor;
 import java.security.Principal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
@@ -46,22 +44,29 @@ public class UserController {
     private final UserService service;
 
     //ADMIN
-    @PostMapping("/change-role/{userId}")
+    @PutMapping("/change-role/{userId}")
     public ResponseEntity<?> changeRole(
           @RequestBody ChangeRoleRequest request,
           @PathVariable(value = "userId") Integer userId
     ) {
         userService.changeRole(request, userId);
-        return ResponseEntity.ok().build();
+        SuccessResponse<?> successResponse =  new SuccessResponse<>();
+        successResponse.setCode(SUCCESS_CODE);
+        successResponse.setMsg(SUCCESS);
+        return ResponseEntity.ok(successResponse);
     }
 
 
     //MANAGER
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(
+    public ResponseEntity<?> register(
         @RequestBody RegisterRequest request
     ) {
-        return ResponseEntity.ok(authService.register(request));
+        SuccessResponse<AuthenticationResponse> successResponse =  new SuccessResponse<>();
+        successResponse.setCode(SUCCESS_CODE);
+        successResponse.setData(authService.register(request));
+        successResponse.setMsg(SUCCESS);
+        return ResponseEntity.ok(successResponse);
     }
 
     @DeleteMapping("/delete-user/{userId}")
@@ -69,7 +74,10 @@ public class UserController {
           @PathVariable Integer userId
     ) {
         userService.deleteUser(userId);
-        return ResponseEntity.ok().build();
+        SuccessResponse<?> successResponse =  new SuccessResponse<>();
+        successResponse.setCode(SUCCESS_CODE);
+        successResponse.setMsg(SUCCESS);
+        return ResponseEntity.ok(successResponse);
     }
 
     @PutMapping("/reset-password/{userId}")
@@ -77,7 +85,10 @@ public class UserController {
         @PathVariable(value = "userId") Integer userId, @RequestBody ResetPasswordRequest request
     ) {
         userService.resetPassword(request,userId);
-        return ResponseEntity.ok().build();
+        SuccessResponse<?> successResponse =  new SuccessResponse<>();
+        successResponse.setCode(SUCCESS_CODE);
+        successResponse.setMsg(SUCCESS);
+        return ResponseEntity.ok(successResponse);
     }
 
     @PostMapping("/search")
@@ -108,7 +119,10 @@ public class UserController {
           Principal connectedUser
     ) {
         service.changePassword(request, connectedUser);
-        return ResponseEntity.ok().build();
+        SuccessResponse<?> successResponse =  new SuccessResponse<>();
+        successResponse.setCode(SUCCESS_CODE);
+        successResponse.setMsg(SUCCESS);
+        return ResponseEntity.ok(successResponse);
     }
 
     @GetMapping("/current-info")
@@ -122,7 +136,7 @@ public class UserController {
         return ResponseEntity.ok(successResponse);
     }
 
-     @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(error -> 

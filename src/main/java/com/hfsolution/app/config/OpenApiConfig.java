@@ -29,6 +29,14 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 @Server(
                         description = "Local ENV",
                         url = "http://localhost:8080"
+                ),
+                @Server(
+                        description = "PROD ENV",
+                        url = "http://ec2-3-17-133-210.us-east-2.compute.amazonaws.com:8080"
+                ),
+                @Server(
+                        description = "PROD ENV HTTPS",
+                        url = "https://f730-3-17-133-210.ngrok-free.app"
                 )
         },
         security = {

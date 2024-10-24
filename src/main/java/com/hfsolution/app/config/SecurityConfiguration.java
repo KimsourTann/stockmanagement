@@ -68,19 +68,20 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
-                                // Endpoint for admin
-                                .requestMatchers("/users/**").hasAnyRole(ADMIN.name())
-                                .requestMatchers("/users/change-role/**").hasAnyAuthority(ADMIN_UPDATE.name())
-
-
-                                // Endpoint for management and admin
-                                .requestMatchers("/users/**").hasAnyRole(MANAGER.name())
-                                .requestMatchers("/users/delete-user/**").hasAnyAuthority(ADMIN_DELETE.name(),MANAGER_DELETE.name())
-                                .requestMatchers("/users/register/**").hasAnyAuthority(ADMIN_CREATE.name(),MANAGER_CREATE.name())
-                                .requestMatchers("/users/reset-password/**").hasAnyAuthority(ADMIN_UPDATE.name(),MANAGER_UPDATE.name())
-                                .requestMatchers("/users/search/**").hasAnyAuthority(ADMIN_READ.name(),MANAGER_READ.name())
-
                                 
+                                
+                                // Endpoint for management and admin
+                                .requestMatchers("/users/**").hasAnyRole(MANAGER.name(),ADMIN.name())
+                                .requestMatchers("/users/change-role/**").hasAnyRole(ADMIN.name())
+
+                                // .requestMatchers(DELETE,"/users/**").hasAnyAuthority(ADMIN_DELETE.name(),MANAGER_DELETE.name())
+                                // .requestMatchers(POST,"/users/**").hasAnyAuthority(ADMIN_CREATE.name(),MANAGER_CREATE.name())
+                                // .requestMatchers(PUT, "/users/**").hasAnyAuthority(ADMIN_UPDATE.name(),MANAGER_UPDATE.name())
+                                // .requestMatchers(GET,"/users/**").hasAnyAuthority(ADMIN_READ.name())
+                                
+                                // Endpoint for admin
+                                // .requestMatchers(PUT,"/users/change-role/**").hasAnyAuthority(ADMIN_UPDATE.name())
+
                                 // Any Endpoint
                                 .anyRequest()
                                 .authenticated()
