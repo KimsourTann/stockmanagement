@@ -11,7 +11,6 @@ import java.util.Objects;
 @Getter
 @Setter
 public class PageRequestDto {
-
     private Integer pageNo = 1;
     private Integer pageSize = 10;
     private Sort.Direction sort = Sort.Direction.ASC;

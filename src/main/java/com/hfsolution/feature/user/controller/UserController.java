@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -40,10 +41,10 @@ public class UserController {
 
     private final AuthenticationService authService;
     private final UserService userService;
-
     private final UserService service;
 
     //ADMIN
+    @PreAuthorize("hasRole('ADMIN') or hasAuthority('admin:update')")
     @PutMapping("/change-role/{userId}")
     public ResponseEntity<?> changeRole(
           @RequestBody ChangeRoleRequest request,
@@ -95,18 +96,6 @@ public class UserController {
     public ResponseEntity<?> getUsersInfo(@RequestBody SearchRequestDTO request) {
         SuccessResponse<Page<User>> successResponse =  new SuccessResponse<>();
         successResponse.setData(userService.searchUser(request));
-        successResponse.setCode(SUCCESS_CODE);
-        successResponse.setMsg(SUCCESS);
-        return ResponseEntity.ok(successResponse);
-    }
-
-    @GetMapping("/list")
-    public ResponseEntity<?> getAllUsers(
-        @RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10") int size,@RequestParam(defaultValue = "ASC" ) Sort.Direction sort,
-        @RequestParam(defaultValue = "id" ) String sortByColumn
-    ) {
-        SuccessResponse<Page<User>> successResponse =  new SuccessResponse<>();
-        successResponse.setData(service.getAllUsers(page,size,sort,sortByColumn));
         successResponse.setCode(SUCCESS_CODE);
         successResponse.setMsg(SUCCESS);
         return ResponseEntity.ok(successResponse);

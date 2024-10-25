@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import com.hfsolution.app.dto.BaseEntityResponseDto;
 
@@ -26,6 +27,7 @@ public interface IBaseDBDao <T, ID> {
   CompletableFuture<BaseEntityResponseDto<T>> listAllAsync(String sortBy, String sortDirection);
 
   BaseEntityResponseDto<T> findAll(PageRequest page);
+  BaseEntityResponseDto<T> findAll(Pageable page);
   BaseEntityResponseDto<T> findAll();
   CompletableFuture<BaseEntityResponseDto<T>> findAllAsync();
 

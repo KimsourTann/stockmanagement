@@ -13,7 +13,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 import com.hfsolution.app.config.database.context.IDataSourceContextHolder;
@@ -262,6 +265,30 @@ public abstract class BaseDBDao<T, ID> implements IBaseDBDao<T, ID> {
       
       appModelList.setStatus(SUCCESS);
       appModelList.setEntityList(entityLIst);
+      
+      return appModelList;
+
+    } catch (Exception e) {
+      
+      throw new DatabaseException(FAIL_CODE, e.getMessage());
+    }
+  }
+
+  @Override
+  public BaseEntityResponseDto<T> findAll(Pageable page) {
+    // String currentMethodName = new Object() {}.getClass().getEnclosingMethod().getName();
+    
+
+    try {
+      switchDataSource(EDataSourceType.SECONDARY);
+
+      Page<T> entityLIst = repository.findAll(page);
+      
+
+      var appModelList = new BaseEntityResponseDto<T>();
+      
+      appModelList.setStatus(SUCCESS);
+      appModelList.setPage(entityLIst);
       
       return appModelList;
 

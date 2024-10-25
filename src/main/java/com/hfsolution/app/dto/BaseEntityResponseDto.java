@@ -9,6 +9,8 @@ import static com.hfsolution.app.constant.AppResponseStatus.*;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.data.domain.Page;
+
 @Getter
 @Setter
 public class BaseEntityResponseDto<T> {
@@ -19,6 +21,7 @@ public class BaseEntityResponseDto<T> {
 	String summaryExecInfo;
  
   T entity;
+  Page<T> page;
   List<T> entityList;
   List<Map<String, String>> dataRows;
 

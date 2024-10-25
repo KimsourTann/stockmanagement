@@ -1,5 +1,6 @@
 package com.hfsolution.feature.stockmanagement.repository;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hfsolution.app.repository.IBaseRepository;
 import com.hfsolution.feature.stockmanagement.entity.Stock;
 
-public interface StockRepository extends IBaseRepository<Stock,Long>{
+public interface StockRepository extends IBaseRepository<Stock,Long>, JpaSpecificationExecutor<Stock>{
 
     // @Query("SELECT s FROM stock s INNER JOIN product p ON s.product_id = p.product_id WHERE p.product_name = :name")
     // Stock findByProductName(String name);

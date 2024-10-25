@@ -72,7 +72,7 @@ public class SecurityConfiguration {
                                 
                                 // Endpoint for management and admin
                                 .requestMatchers("/users/**").hasAnyRole(MANAGER.name(),ADMIN.name())
-                                .requestMatchers("/users/change-role/**").hasAnyRole(ADMIN.name())
+                                // .requestMatchers("/users/change-role/**").hasAnyRole(ADMIN.name())
 
                                 // .requestMatchers(DELETE,"/users/**").hasAnyAuthority(ADMIN_DELETE.name(),MANAGER_DELETE.name())
                                 // .requestMatchers(POST,"/users/**").hasAnyAuthority(ADMIN_CREATE.name(),MANAGER_CREATE.name())

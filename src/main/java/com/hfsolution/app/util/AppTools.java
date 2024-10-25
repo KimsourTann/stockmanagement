@@ -7,6 +7,8 @@ import java.util.Locale;
 
 import org.springframework.context.support.ResourceBundleMessageSource;
 
+import com.hfsolution.app.enums.FieldType;
+
 public class AppTools {
 
     public static String appGetMessage(final String errorCode) {
@@ -20,6 +22,21 @@ public class AppTools {
         String message = resourceBundleMessageSource.getMessage(errorCode,null,locale);
         return message;
         
+    }
+
+    public static Object convertValue(String value, FieldType fieldType) {
+        switch (fieldType) {
+            case INTEGER:
+                return Integer.parseInt(value);
+            case DOUBLE:
+                return Double.parseDouble(value);
+            case LONG:
+                return Long.parseLong(value);
+            case BOOLEAN:
+                return Boolean.parseBoolean(value);
+            default:  // STRING or any unsupported types are returned as-is
+                return value;
+        }
     }
 
     public static String getCurrentDateString(){

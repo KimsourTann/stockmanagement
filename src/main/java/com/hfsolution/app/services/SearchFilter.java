@@ -8,6 +8,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import com.hfsolution.app.dto.SearchRequest;
 import com.hfsolution.app.enums.GlobalOperator;
+import com.hfsolution.app.util.AppTools;
+
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -28,12 +30,16 @@ public class SearchFilter<T> {
         return new Specification<T>() {
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cb){
+                if (searchRequests == null || searchRequests.isEmpty()) {
+                    // Returning null means no condition, so all records will be returned
+                    return null;
+                }
                 List<Predicate> predicates =  new ArrayList<>();
                 for (SearchRequest searchRequest : searchRequests) {
                     
                     switch (searchRequest.getOperator()) {
                         case EQUAL:
-                            Predicate equal = cb.equal(root.get(searchRequest.getColumn()), searchRequest.getValue());
+                            Predicate equal = cb.equal(root.get(searchRequest.getColumn()), AppTools.convertValue(searchRequest.getValue(), searchRequest.getFieldType()));
                             predicates.add(equal);
                             break;
                         case LIKE:
@@ -79,4 +85,5 @@ public class SearchFilter<T> {
             }
         };
     }
+    
 }

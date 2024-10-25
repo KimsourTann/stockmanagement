@@ -1,5 +1,6 @@
 package com.hfsolution.app.dto;
 
+import com.hfsolution.app.enums.FieldType;
 import com.hfsolution.app.enums.Operator;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -19,5 +20,6 @@ public class SearchRequest {
     String value;
     String joinTable;
     Operator operator = Operator.EQUAL;
+    FieldType fieldType = FieldType.STRING;
 
 }

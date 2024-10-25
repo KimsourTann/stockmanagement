@@ -17,5 +17,5 @@ import lombok.AccessLevel;
 public class SearchRequestDTO {
     List<SearchRequest> searchRequest;
     GlobalOperator globalOperator = GlobalOperator.OR;
-    PageRequestDto pageRequestDto = new PageRequestDto();
+    PageRequestDto pageRequestDto;
 }
