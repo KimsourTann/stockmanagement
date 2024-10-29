@@ -39,8 +39,7 @@ public class ProductDao extends BaseDBDao<Product, Long>{
     long startTime = System.currentTimeMillis();
 
     try {
-
-      Product entity = productRepository.findByProductId(id);
+      Product entity = productRepository.findById(id).get();
       var appModel = new BaseEntityResponseDto<Product>();
       appModel.setStatus(SUCCESS);
       appModel.setEntity(entity);
@@ -102,7 +101,7 @@ public class ProductDao extends BaseDBDao<Product, Long>{
 
     try {
 
-      productRepository.deleteByProductId(id);
+      productRepository.deleteById(id);
       var appModel = new BaseEntityResponseDto<Product>();
       appModel.setStatus(SUCCESS);
       return appModel;

@@ -25,7 +25,4 @@ public interface StockRepository extends IBaseRepository<Stock,Long>, JpaSpecifi
     @Query("DELETE FROM Stock s WHERE s.product.productName = :name")
     void deleteByProductName(String name);
     
-    Stock findByProductId(Long id);
-    void deleteByProductId(Long id);
-    
 } 

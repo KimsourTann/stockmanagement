@@ -15,16 +15,16 @@ services:
       - postgres
     restart: unless-stopped
 
-  stock-management:
-    container_name: stock-management
-    image: stock-management:v2
-    environment:
-      DB_HOST: postgres-sql
-    ports:
-      - "8080:8080"
-    networks:
-      - postgres
-    restart: unless-stopped
+  # stock-management:
+  #   container_name: stock-management
+  #   image: stock-management:v2
+  #   environment:
+  #     DB_HOST: postgres-sql
+  #   ports:
+  #     - "8080:8080"
+  #   networks:
+  #     - postgres
+  #   restart: unless-stopped
 
   pgadmin:
     container_name: pgadmin

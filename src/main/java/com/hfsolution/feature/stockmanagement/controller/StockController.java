@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hfsolution.app.dto.SearchRequestDTO;
 import com.hfsolution.feature.stockmanagement.dto.request.StockRequest;
 import com.hfsolution.feature.stockmanagement.service.stock.StockService;
-import static com.hfsolution.app.constant.AppConstant.*;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 

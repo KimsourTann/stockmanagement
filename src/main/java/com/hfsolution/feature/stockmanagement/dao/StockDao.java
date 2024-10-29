@@ -38,7 +38,7 @@ public class StockDao extends BaseDBDao<Stock,Long>{
 
     try {
 
-      Stock entity = stockRepository.findByProductId(id);
+      Stock entity = stockRepository.findById(id).get();
       var appModel = new BaseEntityResponseDto<Stock>();
       appModel.setStatus(SUCCESS);
       appModel.setEntity(entity);
@@ -100,7 +100,7 @@ public class StockDao extends BaseDBDao<Stock,Long>{
 
     try {
 
-      stockRepository.deleteByProductId(id);
+      stockRepository.deleteById(id);
       var appModel = new BaseEntityResponseDto<Stock>();
       appModel.setStatus(SUCCESS);
       return appModel;
